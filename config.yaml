@@ -1,0 +1,28 @@
+# Flux RSS génériques de critiques vin (contenu non filtré à la source,
+# le script filtre par mots-clés).
+feeds:
+  - name: "Decanter"
+    url: "https://www.decanter.com/wine-news/feed/"
+  - name: "Jancis Robinson"
+    url: "https://www.jancisrobinson.com/rss"
+
+# Mots-clés surveillés. Utilisés pour filtrer les flux ci-dessus ET pour
+# générer des recherches Google News RSS dédiées (couvre bien plus de
+# sources que les 2 flux directs, sans avoir à chercher un flux par site).
+keywords:
+  - "Piémont"
+  - "Piedmont"
+  - "Barolo"
+  - "Barbaresco"
+  - "Nebbiolo"
+  - "Langhe"
+  - "Toscane"
+  - "Tuscany"
+  - "millésime"
+  - "vintage report"
+  - "Afrique du Sud vin"
+  - "South Africa wine"
+
+# Nombre max d'articles Google News pris en compte par mot-clé à chaque run
+# (les plus récents). Limite le bruit si un mot-clé est très actif.
+google_news_max_per_keyword: 5
