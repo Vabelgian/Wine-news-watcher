@@ -86,6 +86,7 @@ def entry_id(entry) -> str:
 def main() -> int:
     config = load_config()
     state = load_state()
+    is_first_run = not state.get("seen")
     seen = set(state.get("seen", []))
 
     keywords = config.get("keywords", [])
@@ -135,7 +136,9 @@ def main() -> int:
     state["seen"] = list(seen)
     save_state(state)
 
-    if new_matches:
+    if is_first_run:
+        print(f"Premier run : {len(seen)} article(s) enregistré(s) comme déjà vus, aucun envoi.")
+    elif new_matches:
         send_digest(new_matches)
         print(f"Digest envoyé ({len(new_matches)} article(s)).")
     else:
