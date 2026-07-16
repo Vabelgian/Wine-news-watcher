@@ -6,9 +6,9 @@ feeds:
   - name: "Jancis Robinson"
     url: "https://www.jancisrobinson.com/rss"
 
-# Mots-clés surveillés. Utilisés pour filtrer les flux ci-dessus ET pour
-# générer des recherches Google News RSS dédiées (couvre bien plus de
-# sources que les 2 flux directs, sans avoir à chercher un flux par site).
+# Mots-clés utilisés pour filtrer les flux RSS directs ci-dessus (Decanter,
+# Jancis Robinson). Ces sites sont 100% dédiés au vin, donc même des termes
+# génériques de région ne posent pas de risque de faux positif ici.
 keywords:
   - "Piémont"
   - "Piedmont"
@@ -18,6 +18,21 @@ keywords:
   - "Langhe"
   - "Toscane"
   - "Tuscany"
+  - "millésime"
+  - "vintage report"
+  - "Afrique du Sud vin"
+  - "South Africa wine"
+
+# Mots-clés utilisés spécifiquement pour les recherches Google News.
+# Volontairement plus restreint : on exclut les noms de région génériques
+# (Piémont, Toscane...) qui génèrent trop de faux positifs sur ce canal
+# (tourisme, cinéma, actualité locale non-vin...). On ne garde que des
+# termes déjà intrinsèquement liés au vin.
+google_news_keywords:
+  - "Barolo"
+  - "Barbaresco"
+  - "Nebbiolo"
+  - "Langhe"
   - "millésime"
   - "vintage report"
   - "Afrique du Sud vin"

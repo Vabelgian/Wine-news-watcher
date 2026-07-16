@@ -61,11 +61,13 @@ def match_keywords(text: str, keywords: list) -> str | None:
 
 
 def google_news_feed_url(keyword: str) -> str:
-    # On force la présence d'un terme lié au vin en plus du mot-clé, pour
-    # éviter de remonter des actus hors-sujet sur des noms de région
-    # génériques (ex: "Piémont" seul pourrait remonter de la politique,
-    # de la météo, du sport local, etc.)
-    query = f'"{keyword}" (vin OR wine OR vino OR cave OR vignoble)'
+    # On force la présence d'un terme lié au vin en plus du mot-clé, et on
+    # exclut explicitement les faux positifs les plus courants (cinéma,
+    # séries, IMDb) qui peuvent remonter sur des noms de région.
+    query = (
+        f'"{keyword}" (vin OR wine OR vino OR cave OR vignoble) '
+        f'-film -movie -série -comédie -IMDb'
+    )
     q = quote_plus(query)
     return f"https://news.google.com/rss/search?q={q}&hl=fr&gl=FR&ceid=FR:fr"
 
@@ -115,7 +117,8 @@ def main() -> int:
 
     # 2) Google News RSS par mot-clé (couvre beaucoup plus de sources)
     max_per_kw = config.get("google_news_max_per_keyword", 5)
-    for kw in keywords:
+    google_news_keywords = config.get("google_news_keywords", keywords)
+    for kw in google_news_keywords:
         entries = fetch_entries(google_news_feed_url(kw))
         for entry in entries[:max_per_kw]:
             eid = entry_id(entry)
