@@ -43,8 +43,7 @@ python watcher.py
 ```
 
 ## Notes
-- Fréquence : 1x/jour (6h UTC). L'actualité vin ne justifie pas plus
-  fréquent, et ça limite le bruit.
+- Fréquence : 1x/jour (6h UTC).
 - Sources actuelles : Decanter et Jancis Robinson en flux RSS direct
   (filtrés par mot-clé), + une recherche Google News RSS par mot-clé
   (couvre beaucoup plus de médias sans avoir à chercher un flux par site).
